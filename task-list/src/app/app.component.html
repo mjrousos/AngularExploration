@@ -1,0 +1,28 @@
+<h1 (click)="alert('Hi!')">
+  {{title}}
+</h1>
+<h2>Tasks</h2>
+<ul class="tasks">
+  <li *ngFor="let task of tasks" [class.selected]="task === selectedTask" (click)="onSelect(task)">
+    <div>
+      <span class="badge" [class.done]="task.isDone()">{{task.id}}</span> {{task.name}}
+    </div>
+    <div>
+      <div>
+        <label>Date Done: </label>{{task.dateDone == null?'No':task.dateDone.toLocaleDateString()}}
+      </div>
+      <div *ngIf="!task.isDone()">
+        <button type="button" (click)="task.finish($event)">Finish</button>
+      </div>
+    </div>
+  </li>
+</ul>
+<div *ngIf="selectedTask">
+  <h2>{{selectedTask.name}} Details</h2>
+  <div><label>ID: {{selectedTask.id}}</label></div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="selectedTask.name" placeholder="Task name">
+  </div>
+</div>
+
