@@ -1,0 +1,8 @@
+<div *ngIf="task">
+    <h2>{{task.name}} Details</h2>
+    <div><label>ID: {{task.id}}</label></div>
+    <div>
+      <label>Name: </label>
+      <input [(ngModel)]="task.name" placeholder="Task name">
+    </div>
+  </div>
