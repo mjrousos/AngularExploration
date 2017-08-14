@@ -2,6 +2,7 @@
   {{title}}
 </h1>
 <h2>Tasks</h2>
+<h3 *ngIf="!tasks">Loading tasks...</h3>
 <ul class="tasks">
   <li *ngFor="let task of tasks" [class.selected]="task === selectedTask" (click)="onSelect(task)">
     <div>
@@ -18,4 +19,3 @@
   </li>
 </ul>
 <task-detail [task]="selectedTask"></task-detail>
-
