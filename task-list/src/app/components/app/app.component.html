@@ -1,21 +1,4 @@
 <h1 (click)="alert('Hi!')">
   {{title}}
 </h1>
-<h2>Tasks</h2>
-<h3 *ngIf="!tasks">Loading tasks...</h3>
-<ul class="tasks">
-  <li *ngFor="let task of tasks" [class.selected]="task === selectedTask" (click)="onSelect(task)">
-    <div>
-      <span class="badge" [class.done]="task.isDone()">{{task.id}}</span> {{task.name}}
-    </div>
-    <div>
-      <div *ngIf="task.isDone()">
-        <label>Date Done: </label>{{task.dateDone == null?'No':task.dateDone.toLocaleDateString()}}
-      </div>
-      <div *ngIf="!task.isDone()">
-        <button type="button" (click)="task.finish($event)">Finish</button>
-      </div>
-    </div>
-  </li>
-</ul>
-<task-detail [task]="selectedTask"></task-detail>
+<task-list></task-list>
