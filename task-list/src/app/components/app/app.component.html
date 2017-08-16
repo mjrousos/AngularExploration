@@ -2,7 +2,8 @@
   {{title}}
 </h1>
 <nav>
-  <a routerLink="/tasks">Tasks</a>
-  <a routerLink="/add-task">New Task</a>
+  <!-- routerLinkActive adds a class iff the routerLink matches the active route -->
+  <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+  <a routerLink="/add-task" routerLinkActive="active">New Task</a>
 </nav>
 <router-outlet></router-outlet>

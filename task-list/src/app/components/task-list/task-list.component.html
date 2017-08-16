@@ -1,4 +1,4 @@
-<h2>Tasks</h2>
+<h3>Tasks</h3>
 <h3 *ngIf="!tasks">Loading tasks...</h3>
 <ul class="tasks">
   <li *ngFor="let task of tasks" [class.selected]="task === selectedTask" (click)="onSelect(task)">
@@ -10,7 +10,7 @@
         <a class="btn btn-default" [routerLink]="['/tasks', task.id]">Details</a>
       </span>
       <span *ngIf="task.isDone()">
-        <label>Date Done: </label>{{task.dateDone == null?'No':task.dateDone.toLocaleDateString()}}
+        <label>Date Done: </label>{{task.dateDone == null?'No': (task.dateDone | date:"MM/dd/yy")}}
       </span>
       <span *ngIf="!task.isDone()">
         <button type="button" (click)="task.finish($event)">Finish</button>
