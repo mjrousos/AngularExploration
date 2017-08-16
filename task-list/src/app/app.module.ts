@@ -6,29 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskService } from './services/task.service';
 import { MockTaskService } from './services/mock-task.service';
-import { AddTaskComponent } from './components/add-task/add-task.component';
 
-const routes: Routes = [
-  {
-    path: 'tasks/:id',
-    component: TaskDetailComponent
-  },
-  {
-    path: 'tasks',
-    component: TaskListComponent
-  },
-  {
-    path: 'add-task',
-    component: AddTaskComponent
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/tasks'
-  }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -40,9 +22,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes, { enableTracing: false })
+    AppRoutingModule
   ],
-  // providers: [TaskService]
   providers: [
     Title,
                                                     // Services can be injected into a component (which will make them available
