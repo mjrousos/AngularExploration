@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Title }     from '@angular/platform-browser';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { TaskService } from '../../services/task.service';
 import { MockTaskService } from '../../services/mock-task.service';
@@ -15,7 +17,11 @@ import { MockTaskService } from '../../services/mock-task.service';
 export class AppComponent implements OnInit {
   public title = 'Task Tracker';
 
-  constructor() { }
+  constructor(router:Router, titleService: Title) {
+    router.events.subscribe((event) => {
+      titleService.setTitle('Task Tracker - ' + router.url);
+    });
+  }
 
   ngOnInit(): void { }
 

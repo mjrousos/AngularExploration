@@ -6,12 +6,15 @@
       <span class="badge" [class.done]="task.isDone()">{{task.id}}</span> {{task.name}}
     </div>
     <div>
-      <div *ngIf="task.isDone()">
+      <span>
+        <a class="btn btn-default" [routerLink]="['/tasks', task.id]">Details</a>
+      </span>
+      <span *ngIf="task.isDone()">
         <label>Date Done: </label>{{task.dateDone == null?'No':task.dateDone.toLocaleDateString()}}
-      </div>
-      <div *ngIf="!task.isDone()">
+      </span>
+      <span *ngIf="!task.isDone()">
         <button type="button" (click)="task.finish($event)">Finish</button>
-      </div>
+      </span>
     </div>
   </li>
 </ul>

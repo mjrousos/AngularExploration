@@ -9,4 +9,12 @@ export class TaskService {
   async getTasks(): Promise<Task[]> {
     return Promise.resolve(TASKS);
   }
+
+  async getTask(id: number): Promise<Task> {
+    return (await this.getTasks()).find(t => t.id == id);
+  }
+
+  async addTask(task: Task): Promise<void> {
+    return Promise.resolve();
+  }
 }

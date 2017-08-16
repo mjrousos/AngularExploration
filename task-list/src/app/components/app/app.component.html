@@ -1,4 +1,8 @@
 <h1 (click)="alert('Hi!')">
   {{title}}
 </h1>
-<task-list></task-list>
+<nav>
+  <a routerLink="/tasks">Tasks</a>
+  <a routerLink="/add-task">New Task</a>
+</nav>
+<router-outlet></router-outlet>
