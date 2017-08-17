@@ -21,6 +21,13 @@ export class TaskListComponent implements OnInit {
     this.tasks = await this.taskService.getTasks();
   }
 
+  async finishTask(event, task: Task): Promise<Task> {
+    event.stopPropagation(); // Prevents the event from also firing on parent elements (like the div)
+    task.finish();
+    await this.taskService.update(task);
+    return task;
+  }
+
   onSelect(task:Task): void {
     this.selectedTask = task;
   }

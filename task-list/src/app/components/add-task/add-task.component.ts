@@ -9,7 +9,7 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
-  newTask: Task = new Task(0, '');
+  newTask: Task = new Task(0, '', null);
   submitEnabled: Boolean = true;
 
   constructor(private taskService: TaskService, private router: Router) { }
@@ -22,7 +22,7 @@ export class AddTaskComponent implements OnInit {
     try
     {
       await this.taskService.addTask(this.newTask);
-      this.newTask = new Task(0, '');
+      this.newTask = new Task(0, '', null);
       this.submitEnabled = true;
       this.router.navigate(['/tasks']);
     }

@@ -17,4 +17,8 @@ export class TaskService {
   async addTask(task: Task): Promise<void> {
     return Promise.resolve();
   }
+
+  async update(task: Task): Promise<Task> {
+    return Promise.resolve(null);
+  }
 }

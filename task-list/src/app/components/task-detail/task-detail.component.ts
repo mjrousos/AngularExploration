@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Location }                 from '@angular/common';
+import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
@@ -22,11 +22,23 @@ export class TaskDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params:ParamMap) => this.taskService.getTask(+params.get('id')))
-      .subscribe((task: Task) => this.task = task);
+      .switchMap((params: ParamMap) => {
+        if (params.has('id')) {
+          return this.taskService.getTask(+params.get('id'));
+        }
+        return Promise.resolve(null);
+      })
+      .subscribe((task: Task) => {
+        if (task) this.task = task;
+      });
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.taskService.update(this.task)
+      .then(() => this.goBack());
   }
 }

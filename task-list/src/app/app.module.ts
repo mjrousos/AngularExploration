@@ -2,6 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // NgModel
 import { Routes, RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './components/app/app.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
@@ -11,6 +12,10 @@ import { TaskService } from './services/task.service';
 import { MockTaskService } from './services/mock-task.service';
 
 import { AppRoutingModule } from './app-routing.module';
+
+// Imports for loading & configuring the mock in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MockDataService }  from './services/mock-data.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(MockDataService),
     AppRoutingModule
   ],
   providers: [

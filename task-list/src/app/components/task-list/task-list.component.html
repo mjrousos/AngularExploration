@@ -13,9 +13,9 @@
         <label>Date Done: </label>{{task.dateDone == null?'No': (task.dateDone | date:"MM/dd/yy")}}
       </span>
       <span *ngIf="!task.isDone()">
-        <button type="button" (click)="task.finish($event)">Finish</button>
+        <button type="button" (click)="finishTask($event, task)">Finish</button>
       </span>
     </div>
   </li>
 </ul>
-<task-detail [task]="selectedTask"></task-detail>
+<task-detail *ngIf="selectedTask" [task]="selectedTask"></task-detail>
