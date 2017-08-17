@@ -16,13 +16,15 @@ import { AppRoutingModule } from './app-routing.module';
 // Imports for loading & configuring the mock in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockDataService }  from './services/mock-data.service';
+import { TaskSearchComponent } from './components/task-search/task-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskDetailComponent,
     TaskListComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    TaskSearchComponent
   ],
   imports: [
     BrowserModule,
