@@ -13,7 +13,7 @@
         <label>Date Done: </label>{{task.dateDone == null?'No': (task.dateDone | date:"MM/dd/yy")}}
       </span>
       <span *ngIf="!task.isDone()">
-        <button type="button" (click)="finishTask($event, task)">Finish</button>
+        <button type="button" (click)="finishTask(task); $event.stopPropagation()">Finish</button>
       </span>
     </div>
   </li>
