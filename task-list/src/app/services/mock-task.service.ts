@@ -8,9 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MockTaskService {
   private delayMS: number = 2000;
-  private tasks: Task[];
   private tasksUrl = 'api/tasks'; // URL to web api
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) {
     //    this.initializeTasks();
@@ -20,14 +19,17 @@ export class MockTaskService {
   //   this.tasks = TASKS;
   // }
 
-  async addTask(task: Task): Promise<void> {
-    task.id = this.tasks.length + 1;
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        this.tasks.push(task);
-        resolve();
-      }, this.delayMS);
-    });
+  async addTask(task: Task): Promise<Task> {
+    task.id = (await this.getTasks()).length + 1;
+    try {
+      var response = await this.http.post(this.tasksUrl, JSON.stringify(task), { headers: this.headers }).toPromise();
+      var responseData = response.json().data as Task;
+      return new Task(responseData.id, responseData.name, responseData.dateDone);
+    }
+    catch (error) {
+      console.error('An error occurred', error);
+      return Promise.reject(error.message || error);
+    }
   }
 
   async getTasks(): Promise<Task[]> {
